@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سياسة الخصوصية - متجر التطبيقات</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0f1e;
+      --surface: #111827;
+      --card: #1a2235;
+      --accent: #6c63ff;
+      --accent2: #00d4aa;
+      --text: #e8eaf6;
+      --muted: #8892a4;
+      --border: rgba(108,99,255,0.2);
+    }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      min-height: 100vh;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #0a0f1e 0%, #1a1040 50%, #0a1628 100%);
+      padding: 80px 24px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(108,99,255,0.15) 0%, transparent 70%);
+      top: -200px; left: 50%; transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(108,99,255,0.15);
+      border: 1px solid rgba(108,99,255,0.4);
+      color: #a89cff;
+      padding: 6px 18px;
+      border-radius: 999px;
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #fff 30%, #a89cff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 500px;
+      margin: 0 auto 28px;
+    }
+
+    .hero-meta {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .hero-meta span {
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-meta span::before {
+      content: '•';
+      color: var(--accent2);
+    }
+
+    /* Layout */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    /* TOC */
+    .toc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 48px;
+    }
+
+    .toc h2 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toc ol {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    @media (max-width: 600px) { .toc ol { grid-template-columns: 1fr; } }
+
+    .toc a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 0;
+      transition: color 0.2s;
+    }
+
+    .toc a:hover { color: var(--text); }
+
+    .toc-num {
+      width: 22px; height: 22px;
+      border-radius: 6px;
+      background: rgba(108,99,255,0.2);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Sections */
+    .section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 3px; height: 100%;
+      background: linear-gradient(to bottom, var(--accent), var(--accent2));
+      border-radius: 0 16px 16px 0;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .section-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: rgba(108,99,255,0.15);
+      border: 1px solid rgba(108,99,255,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .section h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .section p {
+      color: #b0bac8;
+      font-size: 14.5px;
+      margin-bottom: 12px;
+    }
+
+    .section p:last-child { margin-bottom: 0; }
+
+    /* List */
+    .privacy-list {
+      list-style: none;
+      margin: 12px 0;
+    }
+
+    .privacy-list li {
+      color: #b0bac8;
+      font-size: 14.5px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .privacy-list li:last-child { border-bottom: none; }
+
+    .privacy-list li::before {
+      content: '✓';
+      color: var(--accent2);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Highlight box */
+    .highlight {
+      background: rgba(0, 212, 170, 0.08);
+      border: 1px solid rgba(0, 212, 170, 0.25);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 16px 0;
+    }
+
+    .highlight p {
+      color: #7eecd6 !important;
+      font-size: 14px !important;
+      margin: 0 !important;
+    }
+
+    /* Contact card */
+    .contact-card {
+      background: linear-gradient(135deg, rgba(108,99,255,0.1), rgba(0,212,170,0.08));
+      border: 1px solid rgba(108,99,255,0.3);
+      border-radius: 16px;
+      padding: 36px;
+      text-align: center;
+      margin-top: 48px;
+    }
+
+    .contact-card h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .contact-card p { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .contact-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* Footer */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 28px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer span { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="hero-badge">🔒 الخصوصية والأمان</div>
+    <h1>سياسة الخصوصية</h1>
+    <p>نحن نلتزم بحماية خصوصيتك وبياناتك الشخصية بأعلى معايير الأمان</p>
+    <div class="hero-meta">
+      <span>آخر تحديث: مايو 2026</span>
+      <span>تطبق على جميع المستخدمين</span>
+      <span>متوافقة مع GDPR</span>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- TOC -->
+    <div class="toc">
+      <h2>📋 فهرس المحتويات</h2>
+      <ol>
+        <li><a href="#s1"><span class="toc-num">1</span> المعلومات التي نجمعها</a></li>
+        <li><a href="#s2"><span class="toc-num">2</span> كيف نستخدم بياناتك</a></li>
+        <li><a href="#s3"><span class="toc-num">3</span> مشاركة المعلومات</a></li>
+        <li><a href="#s4"><span class="toc-num">4</span> الأمان والحماية</a></li>
+        <li><a href="#s5"><span class="toc-num">5</span> حقوقك</a></li>
+        <li><a href="#s6"><span class="toc-num">6</span> ملفات تعريف الارتباط</a></li>
+        <li><a href="#s7"><span class="toc-num">7</span> خصوصية الأطفال</a></li>
+        <li><a href="#s8"><span class="toc-num">8</span> تواصل معنا</a></li>
+      </ol>
+    </div>
+
+    <!-- Section 1 -->
+    <div class="section" id="s1">
+      <div class="section-header">
+        <div class="section-icon">📦</div>
+        <h2>١. المعلومات التي نجمعها</h2>
+      </div>
+      <p>نجمع أنواعًا مختلفة من المعلومات لتقديم خدمة أفضل لجميع مستخدمينا، وتشمل:</p>
+      <ul class="privacy-list">
+        <li>معلومات الحساب: الاسم، البريد الإلكتروني، كلمة المرور المشفرة</li>
+        <li>بيانات الاستخدام: التطبيقات التي تنزلها أو تشتريها أو تراجعها</li>
+        <li>معلومات الجهاز: نوع الجهاز، نظام التشغيل، معرّف الجهاز</li>
+        <li>بيانات الموقع الجغرافي (بإذن منك فقط) لعرض المحتوى المناسب</li>
+        <li>معلومات الدفع المشفرة عند إجراء المشتريات</li>
+      </ul>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="section" id="s2">
+      <div class="section-header">
+        <div class="section-icon">⚙️</div>
+        <h2>٢. كيف نستخدم بياناتك</h2>
+      </div>
+      <p>نستخدم المعلومات المجمعة للأغراض التالية حصرًا:</p>
+      <ul class="privacy-list">
+        <li>تشغيل المتجر وتقديم خدماتنا بشكل سليم ومستمر</li>
+        <li>تخصيص تجربتك وتوصية التطبيقات المناسبة لك</li>
+        <li>معالجة المدفوعات وإدارة الاشتراكات</li>
+        <li>إرسال إشعارات مهمة تتعلق بحسابك أو تحديثات الأمان</li>
+        <li>تحسين جودة خدماتنا وتطوير ميزات جديدة</li>
+        <li>الامتثال للمتطلبات القانونية والتنظيمية</li>
+      </ul>
+      <div class="highlight">
+        <p>🔹 لن نستخدم بياناتك أبدًا لأغراض تسويقية دون الحصول على موافقتك الصريحة مسبقًا.</p>
+      </div>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="section" id="s3">
+      <div class="section-header">
+        <div class="section-icon">🤝</div>
+        <h2>٣. مشاركة المعلومات مع الأطراف الثالثة</h2>
+      </div>
+      <p>نحن لا نبيع بياناتك الشخصية لأي طرف ثالث. قد نشارك معلومات محدودة في الحالات التالية فقط:</p>
+      <ul class="privacy-list">
+        <li>مزودو الخدمات التقنية الموثوقون (الاستضافة، معالجة الدفع) بموجب عقود صارمة</li>
+        <li>مطورو التطبيقات بإحصائيات مجمعة ومجهولة الهوية فقط</li>
+        <li>الجهات القانونية عند وجود أمر قضائي ملزم</li>
+        <li>في حال الاندماج أو الاستحواذ، سيتم إخطارك مسبقًا</li>
+      </ul>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="section" id="s4">
+      <div class="section-header">
+        <div class="section-icon">🛡️</div>
+        <h2>٤. الأمان وحماية البيانات</h2>
+      </div>
+      <p>نطبق أعلى معايير الأمان لحماية بياناتك:</p>
+      <ul class="privacy-list">
+        <li>تشفير SSL/TLS لجميع الاتصالات بين التطبيق والخوادم</li>
+        <li>تشفير قواعد البيانات باستخدام AES-256</li>
+        <li>مصادقة ثنائية (2FA) لحساب المطورين والمشرفين</li>
+        <li>مراجعات أمنية دورية واختبارات الاختراق</li>
+        <li>نسخ احتياطية مشفرة يومية في مواقع متعددة</li>
+      </ul>
+      <div class="highlight">
+        <p>🔹 في حال اكتشاف أي اختراق أمني يؤثر على بياناتك، سنخطرك خلال 72 ساعة وفقًا للوائح GDPR.</p>
+      </div>
+    </div>
+
+    <!-- Section 5 -->
+    <div class="section" id="s5">
+      <div class="section-header">
+        <div class="section-icon">⚖️</div>
+        <h2>٥. حقوقك</h2>
+      </div>
+      <p>لديك حقوق كاملة على بياناتك الشخصية، تشمل:</p>
+      <ul class="privacy-list">
+        <li>حق الوصول: طلب نسخة كاملة من بياناتك المحفوظة لدينا</li>
+        <li>حق التصحيح: تعديل أي معلومات غير دقيقة أو ناقصة</li>
+        <li>حق الحذف: طلب حذف بياناتك ("الحق في النسيان")</li>
+        <li>حق النقل: استلام بياناتك بصيغة قابلة للقراءة الآلية</li>
+        <li>حق الاعتراض: الاعتراض على معالجة بياناتك لأغراض معينة</li>
+        <li>سحب الموافقة في أي وقت دون التأثير على المعالجة السابقة</li>
+      </ul>
+    </div>
+
+    <!-- Section 6 -->
+    <div class="section" id="s6">
+      <div class="section-header">
+        <div class="section-icon">🍪</div>
+        <h2>٦. ملفات تعريف الارتباط (Cookies)</h2>
+      </div>
+      <p>نستخدم ملفات تعريف الارتباط لتحسين تجربتك. أنواعها:</p>
+      <ul class="privacy-list">
+        <li>ملفات ضرورية: لتشغيل الخدمة الأساسية ولا يمكن تعطيلها</li>
+        <li>ملفات الأداء: لقياس أداء التطبيق وتحديد الأخطاء</li>
+        <li>ملفات التخصيص: لحفظ تفضيلاتك مثل اللغة والمنطقة</li>
+        <li>ملفات التسويق: تُفعَّل فقط بموافقتك الصريحة</li>
+      </ul>
+      <p>يمكنك إدارة تفضيلات ملفات تعريف الارتباط من إعدادات التطبيق في أي وقت.</p>
+    </div>
+
+    <!-- Section 7 -->
+    <div class="section" id="s7">
+      <div class="section-header">
+        <div class="section-icon">👶</div>
+        <h2>٧. خصوصية الأطفال</h2>
+      </div>
+      <p>خدماتنا غير موجهة للأطفال دون سن 13 عامًا. إذا علمنا أننا جمعنا بيانات من طفل دون هذا السن دون إذن الوالدين، سنحذفها فورًا.</p>
+      <div class="highlight">
+        <p>🔹 إذا كنت وليًا أو قيّمًا وتعتقد أن طفلك قدّم معلومات شخصية، تواصل معنا فورًا لاتخاذ الإجراء المناسب.</p>
+      </div>
+    </div>
+
+    <!-- Section 8 -->
+    <div class="section" id="s8">
+      <div class="section-header">
+        <div class="section-icon">📞</div>
+        <h2>٨. التغييرات على هذه السياسة</h2>
+      </div>
+      <p>قد نحدّث سياسة الخصوصية هذه من وقت لآخر. سنخطرك بأي تغييرات جوهرية عبر إشعار داخل التطبيق أو بريد إلكتروني قبل 30 يومًا من تطبيقها.</p>
+      <p>استمرارك في استخدام التطبيق بعد نشر التغييرات يُعدّ قبولًا لها. يُنصح بمراجعة هذه الصفحة بشكل دوري.</p>
+    </div>
+
+    <!-- Contact Card -->
+    <div class="contact-card">
+      <h3>هل لديك أسئلة؟</h3>
+      <p>فريق الخصوصية لدينا متاح للإجابة على جميع استفساراتك حول بياناتك الشخصية</p>
+      <a href="mailto:privacy@appstore.com" class="contact-btn">
+        ✉️ تواصل مع فريق الخصوصية
+      </a>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© 2026 متجر التطبيقات — جميع الحقوق محفوظة &nbsp;|&nbsp; <span>سياسة الخصوصية</span> &nbsp;|&nbsp; شروط الاستخدام</p>
+  </footer>
+
+</body>
+  </html>
