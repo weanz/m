@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service - App Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f3ee;
+      --surface: #fff;
+      --ink: #1a1410;
+      --muted: #7a7060;
+      --accent: #c8501a;
+      --accent2: #2a5298;
+      --border: #e0d8cc;
+      --tag-bg: #f0ebe2;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.75;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--ink);
+      color: #f5f3ee;
+      padding: 64px 24px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: 'TOS';
+      position: absolute;
+      right: -20px; top: -20px;
+      font-family: 'Sora', sans-serif;
+      font-size: 180px;
+      font-weight: 800;
+      color: rgba(255,255,255,0.04);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .header-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-tag {
+      display: inline-block;
+      background: rgba(200,80,26,0.2);
+      border: 1px solid rgba(200,80,26,0.5);
+      color: #f4a07a;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    header h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .header-meta {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .header-meta span {
+      font-size: 12px;
+      color: rgba(245,243,238,0.5);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .header-meta strong {
+      display: block;
+      font-size: 14px;
+      color: rgba(245,243,238,0.9);
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0;
+      margin-top: 2px;
+    }
+
+    /* ── NOTICE BANNER ── */
+    .notice {
+      background: #fdf3ec;
+      border-bottom: 2px solid var(--accent);
+      padding: 14px 24px;
+      text-align: center;
+      font-size: 13px;
+      color: #7a3810;
+    }
+
+    .notice strong { font-weight: 600; }
+
+    /* ── LAYOUT ── */
+    .wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 56px 24px 80px;
+    }
+
+    /* ── TOC ── */
+    .toc {
+      border: 2px solid var(--ink);
+      border-radius: 4px;
+      padding: 28px 32px;
+      margin-bottom: 56px;
+      background: var(--surface);
+    }
+
+    .toc-title {
+      font-family: 'Sora', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toc-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .toc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 24px;
+    }
+
+    @media (max-width: 560px) { .toc-grid { grid-template-columns: 1fr; } }
+
+    .toc-grid a {
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 13.5px;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: color 0.15s;
+    }
+
+    .toc-grid a:hover { color: var(--accent); }
+
+    .toc-grid a:last-child, .toc-grid a:nth-last-child(2):nth-child(odd) {
+      border-bottom: none;
+    }
+
+    .toc-n {
+      font-family: 'Sora', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--muted);
+      min-width: 20px;
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      margin-bottom: 48px;
+      scroll-margin-top: 20px;
+    }
+
+    .section-label {
+      font-family: 'Sora', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .section h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .section p {
+      font-size: 15px;
+      color: #3d3428;
+      margin-bottom: 14px;
+    }
+
+    .section p:last-child { margin-bottom: 0; }
+
+    /* ── LIST ── */
+    .tos-list {
+      list-style: none;
+      margin: 14px 0;
+    }
+
+    .tos-list li {
+      font-size: 15px;
+      color: #3d3428;
+      padding: 10px 0 10px 22px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .tos-list li:last-child { border-bottom: none; }
+
+    .tos-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── CALLOUT ── */
+    .callout {
+      background: var(--tag-bg);
+      border-left: 4px solid var(--accent2);
+      padding: 16px 20px;
+      border-radius: 0 6px 6px 0;
+      margin: 16px 0;
+    }
+
+    .callout p {
+      font-size: 13.5px !important;
+      color: var(--accent2) !important;
+      margin: 0 !important;
+      font-style: italic;
+    }
+
+    .callout-warn {
+      border-left-color: var(--accent);
+    }
+
+    .callout-warn p {
+      color: #8a2a08 !important;
+    }
+
+    /* ── TABLE ── */
+    .tos-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin: 16px 0;
+    }
+
+    .tos-table th {
+      background: var(--ink);
+      color: #f5f3ee;
+      font-family: 'Sora', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 10px 16px;
+      text-align: left;
+    }
+
+    .tos-table td {
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
+      color: #3d3428;
+      vertical-align: top;
+    }
+
+    .tos-table tr:last-child td { border-bottom: none; }
+    .tos-table tr:nth-child(even) td { background: #faf8f4; }
+
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 48px 0;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: var(--ink);
+      color: #f5f3ee;
+      padding: 48px;
+      border-radius: 6px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+    }
+
+    @media (max-width: 560px) { .contact { grid-template-columns: 1fr; } }
+
+    .contact h3 {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .contact p {
+      font-size: 14px;
+      color: rgba(245,243,238,0.6);
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 11px 24px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+      transition: opacity 0.15s, transform 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-ghost { background: rgba(255,255,255,0.08); color: #f5f3ee; border: 1px solid rgba(255,255,255,0.15); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #131008;
+      color: rgba(245,243,238,0.4);
+      padding: 24px;
+      text-align: center;
+      font-size: 12px;
+      letter-spacing: 0.03em;
+    }
+
+    footer a { color: rgba(245,243,238,0.6); text-decoration: none; }
+    footer a:hover { color: #f5f3ee; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="header-tag">Legal Document</div>
+      <h1>Terms of <em>Service</em></h1>
+      <p style="color:rgba(245,243,238,0.6); font-size:15px; max-width:520px;">
+        Please read these terms carefully before using our app store platform. By accessing our services, you agree to be bound by the following conditions.
+      </p>
+      <div class="header-meta">
+        <div><span>Effective Date</span><strong>May 26, 2026</strong></div>
+        <div><span>Last Revised</span><strong>May 26, 2026</strong></div>
+        <div><span>Version</span><strong>3.1</strong></div>
+        <div><span>Jurisdiction</span><strong>Global</strong></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="notice">
+    <strong>Important:</strong> These Terms constitute a legally binding agreement between you and AppStore Inc. — Continued use of our services constitutes acceptance.
+  </div>
+
+  <div class="wrapper">
+
+    <!-- TOC -->
+    <div class="toc">
+      <div class="toc-title">Table of Contents</div>
+      <div class="toc-grid">
+        <a href="#s1"><span class="toc-n">01</span> Acceptance of Terms</a>
+        <a href="#s2"><span class="toc-n">02</span> Eligibility & Accounts</a>
+        <a href="#s3"><span class="toc-n">03</span> Use of the Platform</a>
+        <a href="#s4"><span class="toc-n">04</span> Purchases & Payments</a>
+        <a href="#s5"><span class="toc-n">05</span> Intellectual Property</a>
+        <a href="#s6"><span class="toc-n">06</span> Developer Policies</a>
+        <a href="#s7"><span class="toc-n">07</span> Prohibited Conduct</a>
+        <a href="#s8"><span class="toc-n">08</span> Disclaimers & Liability</a>
+        <a href="#s9"><span class="toc-n">09</span> Termination</a>
+        <a href="#s10"><span class="toc-n">10</span> Governing Law</a>
+      </div>
+    </div>
+
+    <!-- S1 -->
+    <div class="section" id="s1">
+      <div class="section-label">Section 01</div>
+      <h2>Acceptance of Terms</h2>
+      <p>By downloading, installing, or using the AppStore platform (the "Service"), you acknowledge that you have read, understood, and agree to be bound by these Terms of Service, along with our Privacy Policy and any additional guidelines we may provide.</p>
+      <p>If you do not agree to these terms, you must immediately discontinue use of the Service. We reserve the right to update these Terms at any time, and your continued use following notification of changes constitutes acceptance.</p>
+      <div class="callout">
+        <p>These Terms apply to all visitors, users, and others who access or use the Service, including developers who submit applications to our platform.</p>
+      </div>
+    </div>
+
+    <!-- S2 -->
+    <div class="section" id="s2">
+      <div class="section-label">Section 02</div>
+      <h2>Eligibility & Account Registration</h2>
+      <p>To use certain features of the Service, you must register for an account. You agree to provide accurate, current, and complete information during registration.</p>
+      <ul class="tos-list">
+        <li>You must be at least 13 years of age to create an account</li>
+        <li>Users under 18 require verifiable parental or guardian consent</li>
+        <li>You are responsible for maintaining the confidentiality of your credentials</li>
+        <li>You may not create more than one account per person without prior written approval</li>
+        <li>Accounts are non-transferable and may not be sold or shared</li>
+        <li>You must notify us immediately of any unauthorized use of your account</li>
+      </ul>
+    </div>
+
+    <!-- S3 -->
+    <div class="section" id="s3">
+      <div class="section-label">Section 03</div>
+      <h2>Use of the Platform</h2>
+      <p>We grant you a limited, non-exclusive, non-transferable, revocable license to access and use the Service for your personal, non-commercial purposes, subject to these Terms.</p>
+      <p>You agree to use the Service only for lawful purposes and in accordance with these Terms. AppStore reserves the right to modify, suspend, or discontinue any aspect of the Service at any time without prior notice.</p>
+      <div class="callout">
+        <p>AppStore does not guarantee uninterrupted, error-free access to the Service and shall not be liable for any downtime or service interruptions.</p>
+      </div>
+    </div>
+
+    <!-- S4 -->
+    <div class="section" id="s4">
+      <div class="section-label">Section 04</div>
+      <h2>Purchases, Payments & Refunds</h2>
+      <p>All transactions made through the platform are subject to the following terms:</p>
+
+      <table class="tos-table">
+        <thead>
+          <tr>
+            <th>Purchase Type</th>
+            <th>Refund Window</th>
+            <th>Conditions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Paid Applications</td>
+            <td>48 hours</td>
+            <td>App must not have been significantly used</td>
+          </tr>
+          <tr>
+            <td>In-App Purchases</td>
+            <td>Non-refundable</td>
+            <td>Unless defective or misrepresented</td>
+          </tr>
+          <tr>
+            <td>Subscriptions</td>
+            <td>Prorated refund</td>
+            <td>Cancel before next billing cycle</td>
+          </tr>
+          <tr>
+            <td>Gift Cards</td>
+            <td>No refund</td>
+            <td>Non-transferable, no cash value</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-warn">
+        <p>All prices are listed in USD unless otherwise stated. AppStore is not responsible for currency conversion fees charged by your financial institution.</p>
+      </div>
+    </div>
+
+    <!-- S5 -->
+    <div class="section" id="s5">
+      <div class="section-label">Section 05</div>
+      <h2>Intellectual Property</h2>
+      <p>The Service and its original content, features, and functionality are and will remain the exclusive property of AppStore Inc. and its licensors. Our trademarks and trade dress may not be used without prior written consent.</p>
+      <ul class="tos-list">
+        <li>All apps available on the platform are owned by their respective developers</li>
+        <li>Downloading an app grants you a personal, non-exclusive license to use it</li>
+        <li>You may not reverse-engineer, decompile, or disassemble any app</li>
+        <li>Screenshots and reviews you submit grant AppStore a royalty-free license to use them</li>
+        <li>Reporting copyright infringement is handled through our DMCA process</li>
+      </ul>
+    </div>
+
+    <!-- S6 -->
+    <div class="section" id="s6">
+      <div class="section-label">Section 06</div>
+      <h2>Developer Policies</h2>
+      <p>Developers who submit applications to AppStore agree to additional terms outlined in the Developer Agreement, in addition to these Terms of Service. Key obligations include:</p>
+      <ul class="tos-list">
+        <li>Apps must comply with all applicable laws and our Content Guidelines</li>
+        <li>Accurate and complete app descriptions, screenshots, and metadata are required</li>
+        <li>Apps must not collect user data beyond what is declared in the privacy policy</li>
+        <li>AppStore retains 30% of all revenue generated through the platform</li>
+        <li>Developers are solely responsible for app support and user communication</li>
+        <li>AppStore reserves the right to remove any app at its sole discretion</li>
+      </ul>
+    </div>
+
+    <!-- S7 -->
+    <div class="section" id="s7">
+      <div class="section-label">Section 07</div>
+      <h2>Prohibited Conduct</h2>
+      <p>You agree not to engage in any of the following prohibited activities:</p>
+      <ul class="tos-list">
+        <li>Uploading or distributing malware, spyware, or malicious code of any kind</li>
+        <li>Attempting to gain unauthorized access to any part of the Service or its systems</li>
+        <li>Using automated scripts, bots, or scrapers to interact with the platform</li>
+        <li>Engaging in fraudulent transactions or chargebacks abuse</li>
+        <li>Harassing, threatening, or impersonating other users or AppStore staff</li>
+        <li>Circumventing any technical measures designed to protect the Service</li>
+        <li>Posting fake reviews, ratings, or misleading content</li>
+      </ul>
+      <div class="callout callout-warn">
+        <p>Violations may result in immediate account suspension, legal action, and reporting to relevant authorities without further notice.</p>
+      </div>
+    </div>
+
+    <!-- S8 -->
+    <div class="section" id="s8">
+      <div class="section-label">Section 08</div>
+      <h2>Disclaimers & Limitation of Liability</h2>
+      <p>The Service is provided on an "AS IS" and "AS AVAILABLE" basis without any warranties of any kind, either express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, or non-infringement.</p>
+      <p>To the maximum extent permitted by applicable law, AppStore Inc. shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, or goodwill, arising from your use of the Service.</p>
+      <p>Our total liability to you for all claims arising from or relating to these Terms or the Service shall not exceed the amount you paid to AppStore in the 12 months preceding the claim.</p>
+    </div>
+
+    <!-- S9 -->
+    <div class="section" id="s9">
+      <div class="section-label">Section 09</div>
+      <h2>Termination</h2>
+      <p>We may terminate or suspend your account and access to the Service immediately, without prior notice, if you breach these Terms or if we determine, in our sole discretion, that such action is necessary.</p>
+      <ul class="tos-list">
+        <li>You may delete your account at any time from the account settings page</li>
+        <li>Upon termination, your license to use the Service ceases immediately</li>
+        <li>Purchased content may no longer be accessible after account deletion</li>
+        <li>Provisions that by nature should survive termination will remain in effect</li>
+      </ul>
+    </div>
+
+    <!-- S10 -->
+    <div class="section" id="s10">
+      <div class="section-label">Section 10</div>
+      <h2>Governing Law & Dispute Resolution</h2>
+      <p>These Terms shall be governed by and construed in accordance with the laws of the State of Delaware, United States, without regard to its conflict of law provisions.</p>
+      <p>Any dispute arising from these Terms shall first be subject to good-faith negotiation. If unresolved within 30 days, disputes shall be settled by binding arbitration under the rules of the American Arbitration Association.</p>
+      <div class="callout">
+        <p>You waive any right to participate in a class-action lawsuit or class-wide arbitration against AppStore Inc. or its affiliates.</p>
+      </div>
+    </div>
+
+    <div class="divider">End of Terms</div>
+
+    <!-- Contact -->
+    <div class="contact">
+      <div>
+        <h3>Questions about these Terms?</h3>
+        <p>Our legal team is available to clarify any section of this agreement. We aim to respond within 2 business days.</p>
+      </div>
+      <div class="contact-actions">
+        <a href="mailto:legal@appstore.com" class="btn btn-primary">✉ Contact Legal</a>
+        <a href="#" class="btn btn-ghost">↓ Download PDF</a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    © 2026 AppStore Inc. — All rights reserved &nbsp;·&nbsp;
+    <a href="#">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="#">Cookie Policy</a> &nbsp;·&nbsp;
+    <a href="#">Developer Agreement</a>
+  </footer>
+
+</body>
+  </html>
