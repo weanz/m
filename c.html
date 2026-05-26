@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ping Go - تحميل التطبيق</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow: #F8E84A;
+      --yellow-dark: #e0cf20;
+      --yellow-deep: #c4b400;
+      --ink: #1a1410;
+      --ink2: #2e2820;
+      --surface: rgba(255,255,255,0.55);
+      --surface2: rgba(255,255,255,0.35);
+      --border: rgba(26,20,16,0.12);
+      --accent: #c8501a;
+      --green: #00b894;
+      --muted: rgba(26,20,16,0.5);
+    }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: var(--yellow);
+      color: var(--ink);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── ORNAMENTAL BG ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 20%, rgba(255,255,255,0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(200,80,26,0.08) 0%, transparent 50%),
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 60px,
+          rgba(26,20,16,0.03) 60px,
+          rgba(26,20,16,0.03) 61px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 60px,
+          rgba(26,20,16,0.03) 60px,
+          rgba(26,20,16,0.03) 61px
+        );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── DECORATIVE CORNERS ── */
+    .corner {
+      position: fixed;
+      width: 120px; height: 120px;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.18;
+    }
+    .corner svg { width: 100%; height: 100%; }
+    .corner-tl { top: 0; right: 0; }
+    .corner-tr { top: 0; left: 0; transform: scaleX(-1); }
+    .corner-bl { bottom: 0; right: 0; transform: scaleY(-1); }
+    .corner-br { bottom: 0; left: 0; transform: scale(-1); }
+
+    /* ── MAIN ── */
+    main {
+      position: relative;
+      z-index: 2;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+
+    /* ── TOP ORNAMENT ── */
+    .top-ornament {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .top-ornament svg {
+      width: 200px;
+      opacity: 0.25;
+    }
+
+    /* ── APP ICON ── */
+    .icon-wrap {
+      text-align: center;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .icon-frame {
+      display: inline-block;
+      position: relative;
+    }
+
+    .icon-frame::before,
+    .icon-frame::after {
+      content: '✦';
+      position: absolute;
+      font-size: 22px;
+      color: var(--ink);
+      opacity: 0.25;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .icon-frame::before { right: -36px; }
+    .icon-frame::after  { left: -36px; }
+
+    .app-icon {
+      width: 110px; height: 110px;
+      border-radius: 26px;
+      background: var(--yellow);
+      border: 3px solid rgba(26,20,16,0.15);
+      box-shadow:
+        0 8px 32px rgba(26,20,16,0.15),
+        0 2px 8px rgba(26,20,16,0.1),
+        inset 0 1px 0 rgba(255,255,255,0.6);
+      object-fit: cover;
+      display: block;
+    }
+
+    .icon-verified {
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--green);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 3px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    /* ── APP NAME ── */
+    .app-name {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 900;
+      text-align: center;
+      color: var(--ink);
+      margin: 24px 0 4px;
+      letter-spacing: -0.02em;
+    }
+
+    .app-dev {
+      text-align: center;
+      font-family: 'Amiri', serif;
+      font-size: 1rem;
+      color: var(--accent);
+      font-style: italic;
+      margin-bottom: 8px;
+    }
+
+    .app-tagline {
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    /* ── DIVIDER ── */
+    .ornament-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0;
+      opacity: 0.3;
+    }
+    .ornament-divider::before,
+    .ornament-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--ink);
+    }
+    .ornament-divider span {
+      font-size: 16px;
+      color: var(--ink);
+    }
+
+    /* ── STATS ROW ── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .stat-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 10px;
+      text-align: center;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 12px rgba(26,20,16,0.06);
+    }
+
+    .stat-value {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--ink);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+      display: block;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 24px rgba(26,20,16,0.07);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 60px; height: 60px;
+      background: radial-gradient(circle at top right, rgba(248,232,74,0.4), transparent 70%);
+      pointer-events: none;
+    }
+
+    .card-title {
+      font-family: 'Amiri', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── ABOUT TEXT ── */
+    .about-text {
+      font-size: 14.5px;
+      line-height: 1.85;
+      color: var(--ink2);
+      font-style: italic;
+      font-family: 'Amiri', serif;
+    }
+
+    /* ── INFO LIST ── */
+    .info-list {
+      list-style: none;
+    }
+
+    .info-list li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    .info-list li:last-child { border-bottom: none; }
+
+    .info-key {
+      color: var(--muted);
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .info-val {
+      font-weight: 700;
+      color: var(--ink);
+      font-family: 'Tajawal', sans-serif;
+      direction: ltr;
+      text-align: left;
+    }
+
+    /* ── CATEGORIES ── */
+    .cats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .cat-tag {
+      background: rgba(26,20,16,0.07);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink2);
+    }
+
+    /* ── DOWNLOAD BUTTON ── */
+    .btn-download {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      padding: 18px 24px;
+      background: var(--ink);
+      color: var(--yellow);
+      border: none;
+      border-radius: 16px;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 6px 24px rgba(26,20,16,0.2), 0 2px 6px rgba(26,20,16,0.15);
+      transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+      margin-bottom: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-download::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(248,232,74,0.08) 0%, transparent 60%);
+    }
+
+    .btn-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(26,20,16,0.25);
+    }
+
+    .btn-download:active { transform: translateY(0); }
+
+    .btn-download svg { flex-shrink: 0; }
+
+    .btn-download .btn-sub {
+      font-size: 11px;
+      font-weight: 400;
+      opacity: 0.6;
+      display: block;
+      margin-top: 2px;
+    }
+
+    .btn-facebook {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 14px 24px;
+      background: #1877f2;
+      color: #fff;
+      border: none;
+      border-radius: 14px;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(24,119,242,0.3);
+      transition: transform 0.15s, box-shadow 0.15s;
+      margin-bottom: 12px;
+    }
+
+    .btn-facebook:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(24,119,242,0.4);
+    }
+
+    .fb-icon { width: 20px; height: 20px; fill: #fff; flex-shrink: 0; }
+
+    /* ── WARNING ── */
+    .warning {
+      background: rgba(200,80,26,0.08);
+      border: 1px solid rgba(200,80,26,0.2);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 16px;
+      font-size: 12.5px;
+      color: #8a3010;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      line-height: 1.6;
+    }
+
+    .warning-icon { flex-shrink: 0; font-size: 16px; margin-top: 1px; }
+
+    /* ── BOTTOM ORNAMENT ── */
+    .bottom-ornament {
+      text-align: center;
+      margin-top: 36px;
+      opacity: 0.2;
+    }
+    .bottom-ornament svg { width: 160px; }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 16px 24px 32px;
+      font-size: 12px;
+      color: rgba(26,20,16,0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Decorative corners -->
+  <div class="corner corner-tl">
+    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M120 0 Q60 0 0 60 Q30 30 60 20 Q90 10 120 0Z" fill="#1a1410"/>
+      <path d="M120 20 Q80 20 40 60 Q60 40 80 30 Q100 20 120 20Z" fill="#1a1410" opacity=".5"/>
+      <circle cx="118" cy="2" r="3" fill="#1a1410"/>
+      <path d="M90 0 Q70 10 60 30" stroke="#1a1410" stroke-width="1.5" fill="none"/>
+    </svg>
+  </div>
+  <div class="corner corner-tr">
+    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M120 0 Q60 0 0 60 Q30 30 60 20 Q90 10 120 0Z" fill="#1a1410"/>
+      <path d="M120 20 Q80 20 40 60 Q60 40 80 30 Q100 20 120 20Z" fill="#1a1410" opacity=".5"/>
+      <circle cx="118" cy="2" r="3" fill="#1a1410"/>
+    </svg>
+  </div>
+  <div class="corner corner-bl">
+    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M120 0 Q60 0 0 60 Q30 30 60 20 Q90 10 120 0Z" fill="#1a1410"/>
+      <path d="M120 20 Q80 20 40 60 Q60 40 80 30 Q100 20 120 20Z" fill="#1a1410" opacity=".5"/>
+    </svg>
+  </div>
+  <div class="corner corner-br">
+    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M120 0 Q60 0 0 60 Q30 30 60 20 Q90 10 120 0Z" fill="#1a1410"/>
+      <path d="M120 20 Q80 20 40 60 Q60 40 80 30 Q100 20 120 20Z" fill="#1a1410" opacity=".5"/>
+    </svg>
+  </div>
+
+  <main>
+
+    <!-- Top ornament -->
+    <div class="top-ornament">
+      <svg viewBox="0 0 300 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="20" x2="100" y2="20" stroke="#1a1410" stroke-width="1"/>
+        <path d="M110 20 Q130 5 150 20 Q170 35 190 20" stroke="#1a1410" stroke-width="1.5" fill="none"/>
+        <line x1="200" y1="20" x2="300" y2="20" stroke="#1a1410" stroke-width="1"/>
+        <circle cx="150" cy="20" r="4" fill="#1a1410"/>
+        <circle cx="105" cy="20" r="2" fill="#1a1410"/>
+        <circle cx="195" cy="20" r="2" fill="#1a1410"/>
+        <text x="150" y="10" text-anchor="middle" font-size="10" fill="#1a1410" font-family="serif">✦ ✦ ✦</text>
+      </svg>
+    </div>
+
+    <!-- App Icon -->
+    <div class="icon-wrap">
+      <div class="icon-frame">
+        <img
+          src="https://i.ibb.co/FbSJVCvk/Shotcom-file-00000000c7ec722f96552c0ca2739b79-5-png.png"
+          alt="Ping Go"
+          class="app-icon"
+          onerror="this.style.background='#1a1410'; this.src=''; this.alt='PG';"
+        />
+        <span class="icon-verified">صلي على محمد  </span>
+      </div>
+    </div>
+
+    <!-- App Name -->
+    <div class="app-name">Ping Go</div>
+    <div class="app-dev">by OFFR Development Team</div>
+    <div class="app-tagline">متجرك للتطبيقات المعدلة الحصرية</div>
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-box">
+        <span class="stat-value">1.0</span>
+        <span class="stat-label">الإصدار</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-value">مجاني</span>
+        <span class="stat-label">السعر</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-value">Android</span>
+        <span class="stat-label">النظام</span>
+      </div>
+    </div>
+
+    <!-- Download Button -->
+    <a href="S.apk" download class="btn-download">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M12 16L7 11H10V4H14V11H17L12 16Z" fill="currentColor"/>
+        <path d="M5 20H19V18H5V20Z" fill="currentColor"/>
+      </svg>
+      <span>
+        تحميل التطبيق
+        <span class="btn-sub">S.apk — الإصدار 1.0</span>
+      </span>
+    </a>
+
+    <!-- Facebook Button -->
+    <a href="https://www.facebook.com/VH5FS" target="_blank" rel="noopener noreferrer" class="btn-facebook">
+      <svg class="fb-icon" viewBox="0 0 24 24">
+        <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.269h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+      </svg>
+      تواصل مع المطور — Facebook
+    </a>
+
+    <!-- Warning -->
+    <div class="warning">
+      <span class="warning-icon">⚠️</span>
+      <span>تأكد من تفعيل خيار <strong>«السماح بمصادر غير معروفة»</strong> في إعدادات جهازك قبل تثبيت الملف.</span>
+    </div>
+
+    <div class="ornament-divider"><span>❧</span></div>
+
+    <!-- About -->
+    <div class="card">
+      <div class="card-title">عن التطبيق</div>
+      <p class="about-text">
+        Ping Go هو منصة رقمية مخصصة لاكتشاف وتنزيل التطبيقات والألعاب المعدلة بطريقة سهلة وفعّالة. يتيح للمستخدمين استكشاف تطبيقات شهيرة وألعاب معروفة عبر فئات متنوعة تشمل الترفيه والإنتاجية والتخصيص والتواصل.
+        <br><br>
+        يتميز Ping Go بواجهة سريعة وسهلة الاستخدام، مع تنظيم واضح للمحتوى حسب الفئة لتجربة تصفح أكثر سلاسة. يتم تحديث المحتوى بانتظام لمساعدة المستخدمين على اكتشاف تطبيقات جديدة ومفيدة.
+      </p>
+    </div>
+
+    <!-- App Info -->
+    <div class="card">
+      <div class="card-title">معلومات التطبيق</div>
+      <ul class="info-list">
+        <li>
+          <span class="info-key">📦 اسم الحزمة</span>
+          <span class="info-val">com.ping.go</span>
+        </li>
+        <li>
+          <span class="info-key">🔢 الإصدار</span>
+          <span class="info-val">1.0</span>
+        </li>
+        <li>
+          <span class="info-key">👨‍💻 المطور</span>
+          <span class="info-val">OFFR Team</span>
+        </li>
+        <li>
+          <span class="info-key">📱 النظام</span>
+          <span class="info-val">Android</span>
+        </li>
+        <li>
+          <span class="info-key">💰 السعر</span>
+          <span class="info-val">مجاني</span>
+        </li>
+        <li>
+          <span class="info-key">🔄 آخر تحديث</span>
+          <span class="info-val">2026</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Categories -->
+    <div class="card">
+      <div class="card-title">الفئات</div>
+      <div class="cats">
+        <span class="cat-tag">🎮 ألعاب</span>
+        <span class="cat-tag">📱 تطبيقات معدلة</span>
+        <span class="cat-tag">🎨 تخصيص</span>
+        <span class="cat-tag">💬 تواصل</span>
+        <span class="cat-tag">⚡ إنتاجية</span>
+        <span class="cat-tag">🎬 ترفيه</span>
+      </div>
+    </div>
+
+    <!-- Bottom ornament -->
+    <div class="bottom-ornament">
+      <svg viewBox="0 0 240 40" fill="none">
+        <line x1="0" y1="20" x2="80" y2="20" stroke="#1a1410" stroke-width="1"/>
+        <path d="M85 20 Q100 8 120 20 Q140 32 155 20" stroke="#1a1410" stroke-width="1.5" fill="none"/>
+        <line x1="160" y1="20" x2="240" y2="20" stroke="#1a1410" stroke-width="1"/>
+        <circle cx="120" cy="20" r="3" fill="#1a1410"/>
+        <text x="120" y="36" text-anchor="middle" font-size="9" fill="#1a1410">✦</text>
+      </svg>
+    </div>
+
+  </main>
+
+  <footer>
+    © 2026 Ping Go &nbsp;·&nbsp; OFFR Development Team &nbsp;·&nbsp; جميع الحقوق محفوظة
+  </footer>
+
+</body>
+</html>
